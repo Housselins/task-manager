@@ -1,0 +1,33 @@
+.containerLogin {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardLogin {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    background-color: #19181a;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.colorLabels {
+    color: #FFF;
+}
+
+.colorTitle {
+    text-align: center;
+    color: #FFF;
+}
+
+.btnSign {
+    background-color:#00adfd;
+    color: #FFF;
+    margin-top: 10px;
+    width: 110px;
+    border-radius: 6px;
+}
