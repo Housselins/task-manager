@@ -90,3 +90,8 @@ Para ejecutar la aplicación, ejecutamos el siguiente código en la cmd:
 npm run start
 
 ```
+## MODELO ARQUITECTURA C4
+
+Requiere de su instalacion Nest.js
+
+En la cmd ejecutamos el siguiente código:
