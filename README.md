@@ -4,8 +4,6 @@
 
 https://drive.google.com/file/d/1zL8RBXeeHMY_Ja-oeaMCyIRICha3oSAt/view?usp=drive_link
 
-https://drive.google.com/file/d/1zL8RBXeeHMY_Ja-oeaMCyIRICha3oSAt/view?usp=sharing
-
 # Definición de requerimientos 
 
 ## La interfaz de usuario: 
