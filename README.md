@@ -1,5 +1,11 @@
 # task-manager
 
+## MODELO ARQUITECTURA C4
+
+https://drive.google.com/file/d/1zL8RBXeeHMY_Ja-oeaMCyIRICha3oSAt/view?usp=drive_link
+
+https://drive.google.com/file/d/1zL8RBXeeHMY_Ja-oeaMCyIRICha3oSAt/view?usp=sharing
+
 # Definición de requerimientos 
 
 ## La interfaz de usuario: 
@@ -90,8 +96,3 @@ Para ejecutar la aplicación, ejecutamos el siguiente código en la cmd:
 npm run start
 
 ```
-## MODELO ARQUITECTURA C4
-
-Requiere de su instalacion Nest.js
-
-En la cmd ejecutamos el siguiente código:
