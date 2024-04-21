@@ -1,0 +1,35 @@
+version: '3'
+services:
+  taskcore:
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - taskcore-backend-tier
+    restart: always
+    container_name: taskcore
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3005:3005
+    expose: 
+      - '3005'
+  db:
+    image: library/postgres:14-alpine
+    ports:
+      - 5432:5432
+    restart: always
+    networks:
+      - taskcore-backend-tier
+    volumes:
+      - taskcore-db:/var/lib/postgresql/data
+    env_file:
+      - .env
+volumes:
+  taskcore-db:
+    driver: local
+networks:
+  taskcore-backend-tier:
+    driver: bridge

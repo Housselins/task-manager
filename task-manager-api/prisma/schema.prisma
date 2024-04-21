@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Status {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @db.Timestamp(0)
+  updatedAt   DateTime @db.Timestamp(0)
+  Task        Task[]
+}
+
+model Tasker {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  active    Boolean  @default(true)
+  createdAt DateTime @db.Timestamp(0)
+  updatedAt DateTime @db.Timestamp(0)
+  Task      Task[]
+}
+
+model Task {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String?
+  status       Status   @relation(fields: [statusId], references: [id])
+  statusId     Int
+  Tasker       Tasker?  @relation(fields: [assignedTo], references: [id])
+  assignedTo   Int?
+  parentTaskId Int?
+  parentTask   Task?    @relation("ParentTask", fields: [parentTaskId], references: [id])
+  childTask    Task[]   @relation("ParentTask")
+  active       Boolean  @default(true)
+  createdAt    DateTime @db.Timestamp(0)
+  updatedAt    DateTime @db.Timestamp(0)
+  endAt        DateTime @db.Timestamp(0)
+}
