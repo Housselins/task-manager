@@ -1,5 +1,5 @@
 import { Tasker } from "@/domain/models/Tasker";
-import { ITaskerRepository } from "@/domain/repositories/tasker.repository";
+import { type ITaskerRepository } from "@/domain/repositories/tasker.repository";
 import { REPOSITORY_TYPES } from "@/infraestructure/ioc/containers/repositories/repository.types";
 import { inject, injectable } from "inversify";
 
