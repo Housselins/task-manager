@@ -1,7 +1,8 @@
 import { Type } from 'class-transformer';
-import { IsBoolean, IsEmail, IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateTaskerDto {
+  @IsOptional()
   @IsNumber()
   id: number;
 
@@ -11,12 +12,14 @@ export class CreateTaskerDto {
   @IsEmail()
   email: string;
 
+  @IsOptional()
   @IsBoolean()
   active: boolean;
 
   @IsString()
-  passwords: string;
+  password: string;
 
+  @IsOptional()
   @IsString()
   updatedAt: string;
 }

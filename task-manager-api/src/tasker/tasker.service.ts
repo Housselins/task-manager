@@ -11,10 +11,8 @@ export class TaskerService {
       data: {
         name: createUserDto.name,
         email: createUserDto.email,
-        active: createUserDto.active,
-        password: createUserDto.passwords,
-        createdAt: createUserDto.updatedAt,
-        updatedAt: createUserDto.updatedAt,
+        active: true,
+        password: createUserDto.password,
       },
     });
   }
@@ -24,7 +22,7 @@ export class TaskerService {
   }
 
   findOne(email: string) {
-    return this.prisma.tasker.findFirst({where: {email: email}});
+    return this.prisma.tasker.findFirst({ where: { email: email } });
   }
 
   remove(id: number) {

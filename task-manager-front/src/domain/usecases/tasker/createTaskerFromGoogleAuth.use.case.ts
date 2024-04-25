@@ -4,7 +4,7 @@ import { REPOSITORY_TYPES } from "@/infraestructure/ioc/containers/repositories/
 import { inject, injectable } from "inversify";
 
 @injectable()
-export default class FindAllTaskersUseCase {
+export default class CreateTaskerFromGoogleAuthUseCase {
   private taskerRepository: ITaskerRepository;
 
   constructor(
@@ -14,18 +14,14 @@ export default class FindAllTaskersUseCase {
     this.taskerRepository = taskerRepository;
   }
 
-  async execute(
-    token?: string,
-    filedId?: string
-  ): Promise<Tasker[] | undefined> {
-    if (!token) return;
-    const tasker: Tasker[] | undefined = await this.taskerRepository
-      .findAllTasker()
+  async execute({ tasker }: { tasker: Tasker }): Promise<Tasker | undefined> {
+    const createTasker: Tasker | undefined = await this.taskerRepository
+      .createTasker(tasker)
       .catch((error) => error);
-    if (!tasker) {
-      return tasker;
+    if (!createTasker) {
+      return createTasker;
     }
 
-    return tasker;
+    return createTasker;
   }
 }

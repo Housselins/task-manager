@@ -24,13 +24,13 @@ model Status {
 }
 
 model Tasker {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   name      String
-  email     String   @unique
+  email     String    @unique
   password  String
-  active    Boolean  @default(true)
-  createdAt DateTime @db.Timestamp(0)
-  updatedAt DateTime @db.Timestamp(0)
+  active    Boolean   @default(true)
+  createdAt DateTime? @default(now()) @db.Timestamp(0)
+  updatedAt DateTime? @default(now()) @db.Timestamp(0)
   Task      Task[]
 }
 

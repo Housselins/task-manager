@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "./context/SessionProvider";
 import Loginlayout from "./LoginLayout";
+import { NextUIProvider } from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,12 +19,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html className="h-full" lang="en">
+      <body className={`${inter.className} h-full`}>
         {/* Provider to manage auth */}
-        <SessionProvider>
-          <Loginlayout>{children}</Loginlayout>
-        </SessionProvider>
+        <NextUIProvider className="h-full">
+          <SessionProvider>
+            <Loginlayout>{children}</Loginlayout>
+          </SessionProvider>
+        </NextUIProvider>
       </body>
     </html>
   );
