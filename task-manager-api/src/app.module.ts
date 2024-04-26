@@ -4,9 +4,10 @@ import { SharedModule } from './shared/shared.module';
 import { TaskerModule } from './tasker/tasker.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TaskModule } from './task/task.module';
 
 @Module({
-  imports: [AuthModule, SharedModule, TaskerModule],
+  imports: [AuthModule, SharedModule, TaskerModule, TaskModule],
   controllers: [AppController],
   providers: [AppService],
 })
