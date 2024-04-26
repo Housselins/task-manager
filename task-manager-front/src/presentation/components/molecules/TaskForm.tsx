@@ -36,6 +36,10 @@ export const TaskForm: FC<FormProps> = ({}) => {
   const createTaskUseCase = appContainer.get<CreateTaskUseCase>(
     USECASES_TYPES._CreateTaskUseCase
   );
+  
+  const { handleSubmit, control, reset } = useForm<IFormInputs>({
+    defaultValues: initialValues,
+  });
 
   const createTask = async (values: IFormInputs) => {
     const taskData: Task = {
@@ -47,12 +51,15 @@ export const TaskForm: FC<FormProps> = ({}) => {
       taskData.statusId = parseInt(values.statusSelected?.value);
     }
     const createTransaction = await createTaskUseCase.execute({ task: taskData });
+    
     console.log(createTransaction);
+    
+    if(createTransaction) {
+      reset();
+    }
+    
   };
 
-  const { handleSubmit, control, reset } = useForm<IFormInputs>({
-    defaultValues: initialValues,
-  });
 
   const onSubmit: SubmitHandler<IFormInputs> = createTask;
 
