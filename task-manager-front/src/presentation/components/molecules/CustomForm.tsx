@@ -26,6 +26,7 @@ export const CustomForm: FC<FormProps> = ({}) => {
   const createTaskerUseCase = appContainer.get<CreateTaskersUseCase>(
     USECASES_TYPES._CreateTaskersUseCase
   );
+  
   const createTasker = async (values: Tasker) => {
     const tasker: Tasker = {
       name: values.name,
@@ -44,33 +45,10 @@ export const CustomForm: FC<FormProps> = ({}) => {
   const onSubmit: SubmitHandler<IFormInputs> = createTasker;
 
   return (
-    // <Formik
-    //   className="flex flex-wrap w-1/3 self-center "
-    //   initialValues={initialValues}
-    //   validate={(values) => {
-    //     const errors: FormikErrors<typeof values> = {};
-    //     if (!values.email) {
-    //       errors.email = "Required";
-    //     } else if (
-    //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-    //     ) {
-    //       errors.email = "Invalid email address";
-    //     }
-    //     return errors;
-    //   }}
-    //   onSubmit={(values, { setSubmitting }) => {
-    //     setTimeout(() => {
-    //       alert(JSON.stringify(values, null, 2));
-    //       createTasker(values);
-    //       setSubmitting(false);
-    //     }, 400);
-    //   }}
-    // >
-
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-wrap justify-center ">
-        <div className="flex flex-col">
-          <div className="flex flex-row gap-2">
+    <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex flex-wrap w-full px-5 justify-center">
+        <div className="flex flex-col w-full gap-3">
+          <div className="flex w-[calc(100%)] flex-row justify-center">
             <Controller
               name="email"
               control={control}
@@ -91,7 +69,7 @@ export const CustomForm: FC<FormProps> = ({}) => {
               )}
             />
           </div>
-          <div className="flex flex-row gap-2">
+          <div className="flex w-[calc(100%)] flex-row justify-center">
             <Controller
               name="name"
               control={control}
@@ -113,7 +91,7 @@ export const CustomForm: FC<FormProps> = ({}) => {
               )}
             />
           </div>
-          <div className="flex flex-row gap-2">
+          <div className="flex w-[calc(100%)] flex-row justify-center">
             <Controller
               name="password"
               control={control}

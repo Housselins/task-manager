@@ -4,7 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 export const NavBar: FC = ({}) => {
   const session = useSession();
   return (
-    <div className="flex flex-wrap flex-row bg-principal-200 w-full h-[calc(100px)] justify-around">
+    <div className="flex flex-wrap flex-row bg-principal-200 w-full h-full justify-around">
       <div className="flex flex-wrap flex-col self-center">
         <div className="flex">
           <span className="text-principal-0">{`${session?.data?.user?.name}`}</span>

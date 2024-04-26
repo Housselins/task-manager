@@ -15,10 +15,7 @@ export default function Loginlayout({
     <div className="w-full h-full">
       {session.data?.user ? (
         <>
-          <NavBarVertical>
-            <NavBar />
-            {children}
-          </NavBarVertical>
+          <NavBarVertical>{children}</NavBarVertical>
         </>
       ) : (
         <Login />

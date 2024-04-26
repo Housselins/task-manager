@@ -1,97 +1,66 @@
 import { FormProps } from "@/lib/interfaces";
-import { FC, useEffect, useState } from "react";
-import { Button } from "@nextui-org/react";
+import { FC, useState } from "react";
 import { CustomButton } from "../atoms/buttons/CustomButton";
 import { USECASES_TYPES } from "@/infraestructure/ioc/containers/usecases/usecases.types";
 import { appContainer } from "@/infraestructure/ioc/inversify.config";
-import CreateTaskersUseCase from "@/domain/usecases/tasker/createTasker.use.case";
-import { Tasker } from "@/domain/models/Tasker";
-import { useSession } from "next-auth/react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Task } from "@/domain/models/Task";
+import { CustomSelect } from "../atoms/select";
+import { TASK_STATUS } from "@/lib/utils/Constants";
+import { TextSearchInput } from "../atoms/input/TextSearchInput";
+import CreateTaskUseCase from "@/domain/usecases/task/createTask.use.case";
 
-interface IFormInputs {
-  name: string;
-  email: string;
-  password: string;
+interface Option {
+  value: string;
+  label: string;
+}
+interface IFormInputs extends Task {
+  statusSelected: Option | undefined;
+  taskerSelected: Option | undefined;
 }
 
 export const TaskForm: FC<FormProps> = ({}) => {
-  const session = useSession();
   const initialValues: IFormInputs = {
-    email: session.data?.user?.email ?? "",
-    name: session.data?.user?.name ?? "",
-    password: "",
+    name: "",
+    description: "",
+    statusSelected: { label: "Estado", value: "0" },
+    taskerSelected: { label: "", value: "0" },
   };
-
-  const createTaskerUseCase = appContainer.get<CreateTaskersUseCase>(
-    USECASES_TYPES._CreateTaskersUseCase
+  const [options, setOptions] = useState<Option[]>(
+    Object.entries(TASK_STATUS).map(([key, value]) => ({
+      value: key,
+      label: value,
+    }))
   );
-  const createTasker = async (values: Tasker) => {
-    const tasker: Tasker = {
+
+  const createTaskUseCase = appContainer.get<CreateTaskUseCase>(
+    USECASES_TYPES._CreateTaskUseCase
+  );
+
+  const createTask = async (values: IFormInputs) => {
+    const taskData: Task = {
       name: values.name,
-      email: values.email,
-      password: values.password.toString(),
+      description: values.description,
       active: true,
     };
-    const createTransaction = await createTaskerUseCase.execute({ tasker });
-    // console.log(createTransaction);
+    if (values.statusSelected?.value) {
+      taskData.statusId = parseInt(values.statusSelected?.value);
+    }
+    const createTransaction = await createTaskUseCase.execute({ task: taskData });
+    console.log(createTransaction);
   };
 
   const { handleSubmit, control, reset } = useForm<IFormInputs>({
     defaultValues: initialValues,
   });
 
-  const onSubmit: SubmitHandler<IFormInputs> = createTasker;
+  const onSubmit: SubmitHandler<IFormInputs> = createTask;
 
   return (
-    // <Formik
-    //   className="flex flex-wrap w-1/3 self-center "
-    //   initialValues={initialValues}
-    //   validate={(values) => {
-    //     const errors: FormikErrors<typeof values> = {};
-    //     if (!values.email) {
-    //       errors.email = "Required";
-    //     } else if (
-    //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-    //     ) {
-    //       errors.email = "Invalid email address";
-    //     }
-    //     return errors;
-    //   }}
-    //   onSubmit={(values, { setSubmitting }) => {
-    //     setTimeout(() => {
-    //       alert(JSON.stringify(values, null, 2));
-    //       createTasker(values);
-    //       setSubmitting(false);
-    //     }, 400);
-    //   }}
-    // >
-
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-wrap justify-center ">
-        <div className="flex flex-col">
-          <div className="flex flex-row gap-2">
-            <Controller
-              name="email"
-              control={control}
-              defaultValue={initialValues.name}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <>
-                  <label className="">
-                    <p className="text-principal-200 font-semibold">Email:</p>
-                  </label>
-                  <input
-                    className={
-                      "border-1 outline-1 bg-principal-50 outline-principal-500"
-                    }
-                    {...field}
-                  />
-                </>
-              )}
-            />
-          </div>
-          <div className="flex flex-row gap-2">
+    <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex flex-wrap w-full px-5 justify-center">
+        <div className="flex flex-col w-full gap-3">
+          <div className="flex w-[calc(100%)] flex-row justify-center">
             <Controller
               name="name"
               control={control}
@@ -99,46 +68,64 @@ export const TaskForm: FC<FormProps> = ({}) => {
               rules={{ required: true }}
               render={({ field }) => (
                 <>
-                  <label className="">
-                    <p className="text-principal-200 font-semibold">Name:</p>
+                  <label className="w-[calc(200px)]">
+                    <p className="text-principal-200 font-semibold text-left">
+                      Nombre de la tarea:
+                    </p>
                   </label>
-                  <input
-                    className={
-                      "border-1 outline-1 bg-principal-50 outline-principal-500"
-                    }
-                    disabled={false}
-                    {...field}
-                  />
+                  <div className="flex flex-wrap w-[240px]">
+                    <TextSearchInput className="w-full" {...field} />
+                  </div>
                 </>
               )}
             />
           </div>
-          <div className="flex flex-row gap-2">
+          <div className="flex w-[calc(100%)] flex-row justify-center">
             <Controller
-              name="password"
+              name="description"
               control={control}
+              defaultValue={initialValues.description}
               rules={{ required: true }}
               render={({ field }) => (
                 <>
-                  <label className="">
-                    <p className="text-principal-200 font-semibold">
-                      Password:
+                  <label className="w-[calc(200px)]">
+                    <p className="text-principal-200 font-semibold text-left">
+                      Descripcion:
                     </p>
                   </label>
-                  <input
-                    className={
-                      "border-1 outline-1 bg-principal-50 outline-principal-500"
-                    }
-                    type="password"
-                    {...field}
-                  />
+                  <div className="flex flex-wrap w-[240px]">
+                    <TextSearchInput className="w-full" {...field} />
+                  </div>
                 </>
+              )}
+            />
+          </div>
+          <div className="flex w-[calc(100%)] flex-row justify-center">
+            <Controller
+              name="statusSelected"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <div className="flex flex-row ">
+                  <label className="w-[calc(200px)]">
+                    <p className="text-principal-200 font-semibold text-left">
+                      Estado de la tarea:
+                    </p>
+                  </label>
+                  <CustomSelect
+                    className="mt-0 text-xs w-[calc(250px)]"
+                    options={options}
+                    setValue={field.onChange}
+                    value={field.value}
+                    onChange={(option) => field.onChange(option)}
+                  />
+                </div>
               )}
             />
           </div>
           <CustomButton
             onClick={handleSubmit(onSubmit)}
-            label="Crear Tasker"
+            label="Crear Tarea"
             buttonType="primary"
             className=""
           />
