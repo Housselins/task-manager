@@ -10,10 +10,14 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      forbidNonWhitelisted:true,
-      transform:true,
+      forbidNonWhitelisted: true,
     }),
-  )
-  await app.listen(3000);
+  );
+  app.enableCors({
+    origin: ['http://localhost:3000'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
+
+  await app.listen(3005);
 }
 bootstrap();
