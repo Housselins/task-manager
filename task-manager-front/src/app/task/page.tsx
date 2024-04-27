@@ -3,6 +3,10 @@ import { CustomText } from "@/presentation/components/atoms/text/CustomText";
 import { TaskForm } from "@/presentation/components/molecules/TaskForm";
 import { useSession } from "next-auth/react";
 
+/**
+ * TaskerPage
+ * vista donde se encuentra el formulario para crear la task
+ */
 export default function TaskerPage() {
   const session = useSession();
 

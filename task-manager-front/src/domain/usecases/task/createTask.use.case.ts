@@ -3,6 +3,10 @@ import { type ITaskRepository } from "@/domain/repositories/task.repository";
 import { REPOSITORY_TYPES } from "@/infraestructure/ioc/containers/repositories/repository.types";
 import { inject, injectable } from "inversify";
 
+/**
+ * class CreateTaskUseCase
+ * Caso de uso para la creacion de task
+ */
 @injectable()
 export default class CreateTaskUseCase {
   private taskRepository: ITaskRepository;

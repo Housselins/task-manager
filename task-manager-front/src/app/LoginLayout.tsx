@@ -5,6 +5,10 @@ import Login from "./components/Login/Login";
 import { NavBarVertical } from "@/presentation/components/organism/NavBarVertical";
 import { NavBar } from "@/presentation/components/organism/NavBar";
 
+/**
+ * Loginlayout
+ * Vista Loginlayout
+ */
 export default function Loginlayout({
   children,
 }: {

@@ -1,6 +1,12 @@
 import { FC } from "react";
 import { signOut, useSession } from "next-auth/react";
 
+/**
+ * NavBar
+ * Funcion encargada de mostrarnos el nombre y correo que se ha logueado en el sistema
+ * @params void 
+ * @returns 
+ */
 export const NavBar: FC = ({}) => {
   const session = useSession();
   return (

@@ -9,12 +9,25 @@ import { Tasker } from "@/domain/models/Tasker";
 import { useSession } from "next-auth/react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
+/**
+ * IFormInputs
+ * params: name - string - nombre
+ *         email - string - correo
+ *         password - string - contraseña
+ */
 interface IFormInputs {
   name: string;
   email: string;
   password: string;
 }
 
+
+/**
+ * CustomForm
+ * funcion para crear tasker
+ * @param  
+ * @returns 
+ */
 export const CustomForm: FC<FormProps> = ({}) => {
   const session = useSession();
   const initialValues: IFormInputs = {

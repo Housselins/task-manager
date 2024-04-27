@@ -5,6 +5,10 @@ import React from "react";
 import { CustomText } from "../text/CustomText";
 import { Input } from "./Input";
 
+/**
+ * TextSearchInput
+ * function nativa de react para el input buscador
+ */
 export const TextSearchInput: React.ForwardRefRenderFunction<
   HTMLInputElement,
   TextSearchInputProps & InputHTMLAttributes<HTMLInputElement>
