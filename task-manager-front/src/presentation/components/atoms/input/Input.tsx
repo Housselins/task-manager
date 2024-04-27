@@ -1,6 +1,10 @@
 import { type InputProps } from "@/lib/interfaces";
 import { type FC } from "react";
 
+/**
+ * Input
+ * params: props - Props que le llegan al input
+ */
 export const Input: FC<InputProps> = (props) => {
   const { value, type, name, id, placeholder, className } = props;
   return (

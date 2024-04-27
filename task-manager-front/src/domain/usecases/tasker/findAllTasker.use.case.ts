@@ -3,6 +3,10 @@ import { type ITaskerRepository } from "@/domain/repositories/tasker.repository"
 import { REPOSITORY_TYPES } from "@/infraestructure/ioc/containers/repositories/repository.types";
 import { inject, injectable } from "inversify";
 
+/**
+ *  Class FindAllTaskersUseCase
+ *  Caso de uso para la clase encontrar todos los taskers
+ */
 @injectable()
 export default class FindAllTaskersUseCase {
   private taskerRepository: ITaskerRepository;

@@ -10,15 +10,34 @@ import { TASK_STATUS } from "@/lib/utils/Constants";
 import { TextSearchInput } from "../atoms/input/TextSearchInput";
 import CreateTaskUseCase from "@/domain/usecases/task/createTask.use.case";
 
+/**
+ * Option
+ * Opciones del formulario
+ * params: value - string - valor de la opcion
+ *         label - string - label de la opcion
+ */
 interface Option {
   value: string;
   label: string;
 }
+
+/**
+ * IFormInputs
+ * Formulario de inputs extends Task
+ * statusSelected - Task - Option | undefined
+ * taskerSelected - Task - Option | undefined
+ */
 interface IFormInputs extends Task {
   statusSelected: Option | undefined;
   taskerSelected: Option | undefined;
 }
 
+/**
+ * TaskForm
+ * Formulario para la creacion de tareas
+ * @param  
+ * @returns 
+ */
 export const TaskForm: FC<FormProps> = ({}) => {
   const initialValues: IFormInputs = {
     name: "",
@@ -41,6 +60,10 @@ export const TaskForm: FC<FormProps> = ({}) => {
     defaultValues: initialValues,
   });
 
+  /**
+   * createTask
+   * values - IFormInputs - inputs del formulario creacion de tareas
+   */
   const createTask = async (values: IFormInputs) => {
     const taskData: Task = {
       name: values.name,

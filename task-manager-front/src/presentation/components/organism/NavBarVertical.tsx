@@ -3,6 +3,12 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { NavBar } from "./NavBar";
 
+/**
+ * NavBarVertical
+ * Componente lateral izquierdo para las funciones del aplicativo
+ * @params  children: React.ReactNode
+ * @returns 
+ */
 export const NavBarVertical = ({ children }: { children: React.ReactNode }) => {
   const session = useSession();
   return (

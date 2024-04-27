@@ -5,6 +5,11 @@ import { inject, injectable } from "inversify";
 import { Tasker } from "@/domain/models/Tasker";
 import { ITaskRepository } from "@/domain/repositories/task.repository";
 import { Task } from "@/domain/models/Task";
+
+/**
+ * Class TaskRepositoryImplement
+ * Implementacion de los repositorio de los task
+ */
 @injectable()
 export default class TaskRepositoryImplement implements ITaskRepository {
   private axiosInstance: AxiosInstance;
@@ -16,6 +21,10 @@ export default class TaskRepositoryImplement implements ITaskRepository {
     this.axiosInstance = TaskCoreAxiosInstance;
   }
 
+  /**
+   * findAllTask
+   * funcion para encontrar todas las tasks
+   */
   findAllTask(): Promise<Task[] | undefined> {
     return this.axiosInstance
       .get("/tasks")
@@ -29,6 +38,10 @@ export default class TaskRepositoryImplement implements ITaskRepository {
       });
   }
 
+  /**
+   * createTask
+   * funcion para crera la task
+   */
   createTask(task: Task): Promise<Task | undefined> {
     return this.axiosInstance
       .post("/tasks", task)

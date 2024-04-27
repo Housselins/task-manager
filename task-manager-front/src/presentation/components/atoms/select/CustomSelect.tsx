@@ -7,6 +7,18 @@ type Option = {
   label: string;
 };
 
+/**
+ * CustomSelectProps
+ * Interfaz para los props del select
+ * params: placeholder - string -  placeholder del select
+ *         options - Option - opciones del select
+ *         name - string - nombre del select
+ *         onChange - Option - evento de las opciones del select
+ *         value - any - valores de las opciones del select
+ *         setValue - React.Dispatch<React.SetStateAction<Option>> - 
+ *         disabled - boolean - se habilita o no el select
+ *         className - string - clase del select
+ */
 interface CustomSelectProps {
   placeholder?: string;
   options: Option[];

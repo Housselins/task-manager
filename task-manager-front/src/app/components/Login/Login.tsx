@@ -2,6 +2,10 @@
 import LoginGoogleButton from "@/app/LoginButton";
 import styles from "./Login.module.css";
 
+/**
+ * Login
+ * vista del formulario del login
+ */
 function Login() {
   return (
     <div className={`h-full w-full ${styles.containerLogin}`}>
