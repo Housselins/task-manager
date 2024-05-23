@@ -21,6 +21,8 @@ const config: Config = {
     colors: {
       principal: {
         0: "#FFFFFF",
+        10: "#F3F3F3",
+        20: "#ECECEC",
         30: "#DDE1EFCE",
         50: "#A8A8A8",
         200: "#2D458DCE",

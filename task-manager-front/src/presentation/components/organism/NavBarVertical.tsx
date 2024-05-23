@@ -15,21 +15,21 @@ export const NavBarVertical = ({ children }: { children: React.ReactNode }) => {
     <div className="w-full flex flex-wrap h-full">
       {/* Este es el menu vertical */}
       <div className="flex flex-wrap flex-row bg-principal-210 w-[calc(20%)] w-max-[calc(400px)] h-full justify-around rounded-br-2xl">
-        <ul>
+        <ul className="h-full pt-36">
           <li>
-            <Link href={"task"}>Crear Tarea</Link>
+            <Link href={"task"} className="text-principal-0 font-semibold">Tareas</Link>
           </li>
           <li>
-            <Link href={"tasker"}>Registrar Usuario</Link>
+            <Link href={"tasker"} className="text-principal-0 font-semibold">Registrar Usuario</Link>
           </li>
         </ul>
       </div>
       {/* Aqui se renderizan las pantallas */}
       <div className="flex flex-wrap flex-col w-[calc(80%)] h-screen">
-        <div className="flex h-[calc(15%)]">
+        <div className="flex h-[calc(10%)]">
           <NavBar />
         </div>
-        <div className="flex h-[calc(85%)]">{children}</div>
+        <div className="flex h-[calc(90%)]">{children}</div>
       </div>
     </div>
   );
