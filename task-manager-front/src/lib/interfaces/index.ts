@@ -1,4 +1,7 @@
-import { HTMLAttributes, InputHTMLAttributes } from "react";
+import { HTMLAttributes, HtmlHTMLAttributes, InputHTMLAttributes } from "react";
+import { ActionsInsideBar } from '../../presentation/components/organism/ActionsInsideBar';
+import { Tasker } from "@/domain/models/Tasker";
+import { Task } from "@/domain/models/Task";
 
 /**
  * ButtonProps
@@ -123,4 +126,40 @@ export interface TextSearchInputProps {
   onChange?: (data: any) => void;
   defaultOption?: string;
   options?: SelectOption[];
+}
+
+/**
+ * NavActionsProps
+ * Interface for navigation inside a module
+*  @argument attributes: label - React.ReactNode - label of the action
+* 
+ * @argument             function: - void - action of the button
+ */
+export interface NavActionsProps {
+  label: React.ReactNode;
+  function: () => void;
+}
+/**
+ * ActionsInsideBarProps
+ * Interface for Actions inside bar
+ * @argument action : NavActionsProps[]
+ *             
+ * @argument className : HtmlHTMLAttributes<HTMLDivElement> | string
+ */
+export interface ActionsInsideBarProps {
+  action?: NavActionsProps[];
+  className?: HtmlHTMLAttributes<HTMLDivElement> | string;
+}
+
+/**
+ * TaskCardProps
+ * Interface para tarjeta de tarea 
+ * @argument title : string
+ *             
+ * @argument status : string
+ * @argument tasker : Tasker
+ */
+export interface TaskCardProps {
+  task?: Task;
+  tasker?: Tasker;
 }
