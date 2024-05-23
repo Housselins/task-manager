@@ -20,7 +20,9 @@ export class TaskService {
   }
 
   findAll() {
-    return this.prisma.task.findMany();
+    return this.prisma.task.findMany({
+      include: { status: true },
+    });
   }
 
   findOne(id: number) {
