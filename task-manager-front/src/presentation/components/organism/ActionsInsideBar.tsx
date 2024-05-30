@@ -16,9 +16,10 @@ export const ActionsInsideBar: FC<ActionsInsideBarProps> = ({
     <div className="flex flex-wrap flex-row bg-principal-200 w-full h-full justify-around">
       <div className="flex flex-wrap flex-row gap-2 self-center">
         {action &&
-          action.map((action) => {
+          action.map((action, index) => {
             return (
               <Button
+                key={index}
                 className={`flex text-principal-0 bg-principal-550 p-4 rounded-[calc(15px)] justify-self-center self-center ${className}`}
                 onClick={action.function}
               >

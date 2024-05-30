@@ -35,8 +35,8 @@ export default function TaskerPage() {
       <div className="flex flex-wrap bg-principal-30 flex-col justify-center flex-1 w-full h-full text-center rounded-xl">
         <div className="self-center grid grid-cols-3 gap-3 grid-flow-row">
           {tasksData &&
-            tasksData.map((task) => (
-              <div className="col-span-1">
+            tasksData.map((task, index) => (
+              <div key={index} className="col-span-1">
                 <TaskCard task={task} />
               </div>
             ))}
