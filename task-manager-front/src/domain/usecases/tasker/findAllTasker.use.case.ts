@@ -19,12 +19,12 @@ export default class FindAllTaskersUseCase {
   }
 
   async execute(
+    taskerData: Tasker,
     token?: string,
-    filedId?: string
-  ): Promise<Tasker[] | undefined> {
-    if (!token) return;
-    const tasker: Tasker[] | undefined = await this.taskerRepository
-      .findAllTasker()
+  ): Promise<Tasker | undefined> {
+    // if (!token) return;
+    const tasker: Tasker | undefined = await this.taskerRepository
+      .findAllTasker(taskerData)
       .catch((error) => error);
     if (!tasker) {
       return tasker;

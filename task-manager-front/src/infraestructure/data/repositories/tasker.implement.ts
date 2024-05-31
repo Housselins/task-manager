@@ -25,19 +25,19 @@ export default class TaskerRepositoryImplement implements ITaskerRepository {
    * Funcion para encontrar a todos los tasker
    * 
    */
-  async findAllTasker(): Promise<Tasker[] | undefined> {
+  async findAllTasker(tasker: Tasker): Promise<Tasker | undefined> {
     try {
       const config = {
         headers: {
           // Authorization: "Bearer " + accessToken,
         },
       };
-      let url = `tasker`;
+      let url = `tasker/verify?email=${tasker.email}&password=${tasker.password}`;
 
       // DEBUG URL
       // console.log(url);
 
-      const getTaskers: AxiosResponse<Tasker[] | undefined> =
+      const getTaskers: AxiosResponse<Tasker | undefined> =
         await this.axiosInstance.get(url, config);
 
       // DEBUG URL

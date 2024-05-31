@@ -2,6 +2,7 @@ import { FC } from "react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { NavBar } from "./NavBar";
+import { useAppSelector } from "@/presentation/store";
 
 /**
  * NavBarVertical
@@ -11,6 +12,8 @@ import { NavBar } from "./NavBar";
  */
 export const NavBarVertical = ({ children }: { children: React.ReactNode }) => {
   const session = useSession();
+  const user = useAppSelector((state) => state.config.taskerLogged);
+
   return (
     <div className="w-full flex flex-wrap h-full">
       {/* Este es el menu vertical */}

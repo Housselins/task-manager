@@ -9,3 +9,4 @@ export const TASK_STATUS: { [key: string]: string } = {
 };
 
 export const ENVIROMENTS_CONFIG = { QA: "QA", PROD: "PROD" };
+export const ENVIROMENT = "PROD"

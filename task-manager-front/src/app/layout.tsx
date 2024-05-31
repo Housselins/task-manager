@@ -5,6 +5,7 @@ import "./globals.css";
 import { SessionProvider } from "./context/SessionProvider";
 import Loginlayout from "./LoginLayout";
 import { NextUIProvider } from "@nextui-org/react";
+import { StoreProvider } from "@/presentation/components/atoms/providers/StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,11 +27,13 @@ export default async function RootLayout({
     <html className="h-full" lang="en">
       <body className={`${inter.className} h-full`}>
         {/* Provider to manage auth */}
-        <NextUIProvider className="h-full">
-          <SessionProvider>
-            <Loginlayout>{children}</Loginlayout>
-          </SessionProvider>
-        </NextUIProvider>
+        <StoreProvider>
+          <NextUIProvider className="h-full">
+            <SessionProvider>
+              <Loginlayout>{children}</Loginlayout>
+            </SessionProvider>
+          </NextUIProvider>
+        </StoreProvider>
       </body>
     </html>
   );

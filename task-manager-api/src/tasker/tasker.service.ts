@@ -21,8 +21,15 @@ export class TaskerService {
     return this.prisma.tasker.findMany();
   }
 
-  findOne(email: string) {
-    return this.prisma.tasker.findFirst({ where: { email: email } });
+  async findOne(email: string, password: string) {
+    // console.log('entra');
+    const find = await this.prisma.tasker.findFirst({
+      where: { email: email, password: password },
+    });
+
+    // console.log(find);
+
+    return find;
   }
 
   remove(id: number) {

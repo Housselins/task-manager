@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { TaskerService } from './tasker.service';
 import { CreateTaskerDto } from './dto/create-tasker.dto';
 
@@ -16,9 +25,9 @@ export class TaskerController {
     return this.taskerService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.taskerService.findOne(id);
+  @Get('verify')
+  findOne(@Query('email') email: string, @Query('password') password: string) {
+    return this.taskerService.findOne(email, password);
   }
 
   // @Patch(':id')
