@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.setGlobalPrefix('api/v1');
+  // app.setGlobalPrefix('api/v1');
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -14,7 +14,7 @@ async function bootstrap() {
     }),
   );
   app.enableCors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000', 'https://basilisk-precious-starfish.ngrok-free.app', 'https://lively-stone-09330110f.5.azurestaticapps.net'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   });
 

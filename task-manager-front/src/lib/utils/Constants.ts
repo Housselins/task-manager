@@ -7,3 +7,5 @@ export const TASK_STATUS: { [key: string]: string } = {
   [TASK_STATUS_IN_PROGRESS_CODE]: "En progreso",
   [TASK_STATUS_APPROVED_CODE]: "Finalizada",
 };
+
+export const ENVIROMENTS_CONFIG = { QA: "QA", PROD: "PROD" };
