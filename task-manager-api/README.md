@@ -18,6 +18,9 @@ $ npm prisma
 $ npm prisma init
 ```
 
+```bash
+$ docker-compose up --build
+```
 # Prisma migration (Database)
 
 ```bash

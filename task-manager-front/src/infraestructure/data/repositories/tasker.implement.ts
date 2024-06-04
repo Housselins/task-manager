@@ -5,6 +5,10 @@ import { inject, injectable } from "inversify";
 import { ITaskerRepository } from "@/domain/repositories/tasker.repository";
 import { Tasker } from "@/domain/models/Tasker";
 
+/**
+ * Class TaskerRepositoryImplement
+ * Implementacion de los repositorio de los taskers
+ */
 @injectable()
 export default class TaskerRepositoryImplement implements ITaskerRepository {
   private axiosInstance: AxiosInstance;
@@ -16,19 +20,24 @@ export default class TaskerRepositoryImplement implements ITaskerRepository {
     this.axiosInstance = TaskCoreAxiosInstance;
   }
 
-  async findAllTasker(): Promise<Tasker[] | undefined> {
+  /**
+   * findAllTasker
+   * Funcion para encontrar a todos los tasker
+   * 
+   */
+  async findAllTasker(tasker: Tasker): Promise<Tasker | undefined> {
     try {
       const config = {
         headers: {
           // Authorization: "Bearer " + accessToken,
         },
       };
-      let url = `tasker`;
+      let url = `tasker/verify?email=${tasker.email}&password=${tasker.password}`;
 
       // DEBUG URL
       // console.log(url);
 
-      const getTaskers: AxiosResponse<Tasker[] | undefined> =
+      const getTaskers: AxiosResponse<Tasker | undefined> =
         await this.axiosInstance.get(url, config);
 
       // DEBUG URL
@@ -51,6 +60,13 @@ export default class TaskerRepositoryImplement implements ITaskerRepository {
       }
     }
   }
+
+
+  /**
+   * createTasker
+   * Funcion para crear al tasker
+   * 
+   */
   async createTasker(tasker: Tasker): Promise<Tasker | undefined> {
     try {
       const config = {

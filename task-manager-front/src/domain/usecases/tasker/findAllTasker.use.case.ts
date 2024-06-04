@@ -1,8 +1,12 @@
 import { Tasker } from "@/domain/models/Tasker";
-import { ITaskerRepository } from "@/domain/repositories/tasker.repository";
+import { type ITaskerRepository } from "@/domain/repositories/tasker.repository";
 import { REPOSITORY_TYPES } from "@/infraestructure/ioc/containers/repositories/repository.types";
 import { inject, injectable } from "inversify";
 
+/**
+ *  Class FindAllTaskersUseCase
+ *  Caso de uso para la clase encontrar todos los taskers
+ */
 @injectable()
 export default class FindAllTaskersUseCase {
   private taskerRepository: ITaskerRepository;
@@ -15,12 +19,12 @@ export default class FindAllTaskersUseCase {
   }
 
   async execute(
+    taskerData: Tasker,
     token?: string,
-    filedId?: string
-  ): Promise<Tasker[] | undefined> {
-    if (!token) return;
-    const tasker: Tasker[] | undefined = await this.taskerRepository
-      .findAllTasker()
+  ): Promise<Tasker | undefined> {
+    // if (!token) return;
+    const tasker: Tasker | undefined = await this.taskerRepository
+      .findAllTasker(taskerData)
       .catch((error) => error);
     if (!tasker) {
       return tasker;

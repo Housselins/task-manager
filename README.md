@@ -1,8 +1,17 @@
 # task-manager
 
 ## MODELO ARQUITECTURA C4
+![C4](https://github.com/Housselins/task-manager/blob/dev/documents/C4.jpeg)
 
-https://drive.google.com/file/d/1zL8RBXeeHMY_Ja-oeaMCyIRICha3oSAt/view?usp=drive_link
+## DOCUMENTO QAW
+![QAW](https://github.com/Housselins/task-manager/blob/dev/documents/QAW.pdf)
+
+## ANTES DE CREAR UNA TAREA, SE DEBE REALIZAR QUERY A TABLA STATUS
+```sh
+INSERT INTO public."Status" (id, "name", description, active, "createdAt", "updatedAt") VALUES(1, 'Pendiente', NULL, true, '2024-04-26 03:47:34.000', '2024-04-26 03:47:34.000');
+INSERT INTO public."Status" (id, "name", description, active, "createdAt", "updatedAt") VALUES(2, 'En progreso', NULL, true, '2024-04-26 03:47:34.000', '2024-04-26 03:47:34.000');
+INSERT INTO public."Status" (id, "name", description, active, "createdAt", "updatedAt") VALUES(3, 'Finalizada', NULL, true, '2024-04-26 03:47:34.000', '2024-04-26 03:47:34.000');
+```
 
 # Definición de requerimientos 
 
